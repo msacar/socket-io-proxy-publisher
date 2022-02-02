@@ -7,7 +7,7 @@ Uses socket.io to make a one way reverse proxy
 - a Node.js server (any server can run node.js which is going to be our publicly reachable server)
 - a [Localhost proxy client](https://github.com/msacar/socket-io-proxy-localhost) (which is make a connection from localhost to proxy server and serve our localhost)
 
-This project depends on  a [Localhost proxy client](https://github.com/msacar/socket-io-proxy-localhost)
+This project works with a [Localhost proxy client](https://github.com/msacar/socket-io-proxy-localhost)
 ## How to use
 
 Sample Publisher Server Code:
