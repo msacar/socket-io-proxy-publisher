@@ -1,7 +1,7 @@
 # socket-io-reverse-proxy-server
 
 ## Features
-Helps developers to  publish their localhost via socket.io on on aws, heroku or any server can run node.js
+Helps developers to reverse proxy their localhost via socket.io on on aws, heroku or any server can run node.js
 Uses socket.io to make a one way reverse proxy
 
 - a Node.js server (any server can run node.js which is going to be our publicly reachable server)
