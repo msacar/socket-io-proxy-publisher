@@ -36,8 +36,8 @@ const proxyBackendClient =  proxyBackend({
 })
 //Publish localhost to cloud
 const socket  = proxyBackendClient.publish({
-    //its your aws server
-    server : "http://ec2-3-120-246-199.eu-central-1.compute.amazonaws.com/",
+    //its your cloud server
+    server : "http://ec2-3-120-246-199.eu-central-1.compute.amazonaws.com/", // our cloud server's publicly reachable address
     port : 80  //its default
 })
 ```
