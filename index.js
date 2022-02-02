@@ -98,32 +98,12 @@ module.export = module.exports  =  function (configData){
       console.warn("Socket tried to connect with wrong secret key !")
       return  socket.disconnect()
     }
-
     next()
   })
 
   io.on('connection', (socket) => {
     console.log('a user connected', socket.id);
     _socket = socket
-    ss(socket).on('profile-image',(clientStream,data,response)=>{
-      console.log("server on buffer")
-
-      //server client'dan gelen readable streami
-      // kendi oluşturduğu fs Writable streame
-      // readable read oldukça writable'a pipe ediyor
-      let serverWriteStream =fs.createWriteStream("serverSavedClientsStream.jpg")
-      clientStream.pipe(serverWriteStream)
-
-      //server olarak clientin streamini okuduk
-      //acknowledge streamini gönderiyoruz
-      setTimeout(()=>{
-        let ss_ackReadableStream = ss.createStream()
-        response(ss_ackReadableStream,{file:"acknowledge.jpg"})
-        fs.createReadStream("profile.jpg").pipe(ss_ackReadableStream)
-      },999)
-
-
-    })
   });
 
   return   server
