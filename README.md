@@ -26,7 +26,7 @@ proxyPublisherServer.listen(80,(e)=>{
 Sample Localhost Server Code:
 
 ```js
-const proxyBackend  = require('socket-io-reverse-proxy-server')
+const proxyBackend  = require('socket-io-proxy-backend')
 
 const proxyBackendClient =  proxyBackend({
     //its your localhost
