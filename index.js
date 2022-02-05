@@ -57,28 +57,38 @@ module.export = module.exports  =  function (configData){
   });
 
   app.post('*', (req, res) => {
-
     let url     = req.url
     let method  = req.method
     let headers = req.headers
-    let body    = req.body
+    let body    = Object.assign({},req.body)
     let query   = req.query
     let ip   = req.socket.remoteAddress
 
     console.log(`${method} ${url} ${ip}`)
 
-    _socket.emit('request', {
-      ip,
-      url,
-      method,
-      headers,
-      body,
-      query
-    }, function (response) {
-      res.statusCode = response.status
-      res.set(response.headers)
-      res.send(response.content)
-    })
+    ss(_socket).emit('request',
+        {
+          body,
+          ip,
+          url,
+          method,
+          headers,
+          query
+        },
+        function (response,data) {
+          if (!data || !data.status ){
+            res.statusCode = response.status
+            res.set(response.headers)
+            res.send(response.content)
+            return;
+          }
+          console.log("Complete " +url)
+          res.statusCode = data.status
+          res.set(data.headers)
+          response.pipe(res)
+        }
+    );
+
   });
 
   app.options('*', (req, res) => {
